@@ -26,7 +26,12 @@ const io = new Server(server, {
 });
 
 const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/catchup_ai';
+const MONGODB_URI =
+  process.env.MONGODB_URI ||
+  process.env.MONGO_URI ||
+  process.env.DATABASE_URL ||
+  process.env.MONGODB_URL ||
+  'mongodb://localhost:27017/catchup_ai';
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -161,14 +166,19 @@ async function seedDefaultUsers() {
 
 // MongoDB Connection State
 let isMongoConnected = false;
+let isMongoConnecting = false;
 
 async function connectMongoDB() {
+  if (isMongoConnected || isMongoConnecting) return;
+  isMongoConnecting = true;
   try {
+    const masked = MONGODB_URI.replace(/\/\/[^:]+:[^@]+@/, '//***:***@');
+    console.log(`[database] Connecting to MongoDB: ${masked}`);
     await mongoose.connect(MONGODB_URI, {
-      serverSelectionTimeoutMS: 4000,
+      serverSelectionTimeoutMS: 10000,
     });
     isMongoConnected = true;
-    console.log('[database] MongoDB connected');
+    console.log('[database] MongoDB connected successfully');
 
     // Seed initial meetings to MongoDB if empty
     const count = await MeetingModel.countDocuments();
@@ -182,21 +192,33 @@ async function connectMongoDB() {
     await seedDefaultUsers();
   } catch (err) {
     isMongoConnected = false;
-    console.warn(`[database] MongoDB offline (${err.message}). Using local JSON storage.`);
+    console.warn(`[database] MongoDB connection failed (${err.message}). Using local JSON storage.`);
+    if (MONGODB_URI.includes('localhost')) {
+      console.warn('[database] NOTE: Default localhost URI in use. Set MONGODB_URI environment variable on Render if connecting to MongoDB Atlas.');
+    }
+  } finally {
+    isMongoConnecting = false;
   }
 }
 
 connectMongoDB();
 seedDefaultUsers(); // ensure json users are also seeded
 
+// Auto-retry connection every 15 seconds if not connected
+setInterval(() => {
+  if (!isMongoConnected) {
+    connectMongoDB();
+  }
+}, 15000);
+
 mongoose.connection.on('disconnected', () => {
   isMongoConnected = false;
-  console.log('MongoDB disconnected');
+  console.log('[database] MongoDB disconnected');
 });
 
 mongoose.connection.on('connected', () => {
   isMongoConnected = true;
-  console.log('[MongoDB connected');
+  console.log('[database] MongoDB connected event received');
   seedDefaultUsers();
 });
 
@@ -675,6 +697,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`[server] Running on http://localhost:${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`[server] Running on http://0.0.0.0:${PORT} (PORT=${PORT})`);
 });
