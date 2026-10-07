@@ -1,0 +1,38 @@
+[
+  {
+    "id": "usr_admin_muxr4arx",
+    "name": "Admin User",
+    "email": "admin@catchup.ai",
+    "password": "$2b$10$gDQFVPG.jK9tXp9Lh3ptm.njwHS.iHSDy/ENJeXGaYIPaVR99a/BS",
+    "role": "admin",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Admin",
+    "createdAt": "2026-10-07T06:53:34.221Z"
+  },
+  {
+    "id": "usr_member_muxr4auh",
+    "name": "Team Member",
+    "email": "member@catchup.ai",
+    "password": "$2b$10$cQ1iwSZX8LG6Fu.nmazVDOaSJloBpXISn4ksxtVHWCVbi7miiFkwu",
+    "role": "member",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Member",
+    "createdAt": "2026-10-07T06:53:34.313Z"
+  },
+  {
+    "id": "usr_muxr5k7y0hwz",
+    "name": "Test Member",
+    "email": "testmember@example.com",
+    "password": "$2b$10$3/kIZ8t1u0CJP/a4scMUYeVvYdIZW0VLqey8uZtXYaSfC2hp1ILPu",
+    "role": "member",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Test%20Member",
+    "createdAt": "2026-10-07T06:54:33.118Z"
+  },
+  {
+    "id": "usr_muxr9xdkd8sb",
+    "name": "asdf",
+    "email": "asdf@gmail.com",
+    "password": "$2b$10$GWaHYqkzqUb7NE3WwonJxO4fWPD/CWNzIi9RUpYAjhsLbzlsoBQMy",
+    "role": "admin",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=asdf",
+    "createdAt": "2026-10-07T06:57:56.792Z"
+  }
+]

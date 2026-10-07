@@ -1,0 +1,502 @@
+[
+  {
+    "id": "meeting-1791274106327",
+    "title": "Quick Team Sync",
+    "date": "2026-10-06T08:08:26.327Z",
+    "durationSeconds": 20,
+    "durationFormatted": "00:20",
+    "host": {
+      "id": "local-user",
+      "name": "Guest 5683",
+      "role": "Host",
+      "avatar": "",
+      "color": "#6366f1"
+    },
+    "participants": [
+      {
+        "id": "local-user",
+        "name": "Guest 5683",
+        "role": "Host",
+        "avatar": "",
+        "color": "#6366f1"
+      },
+      {
+        "id": "u-sarah",
+        "name": "Sarah Chen",
+        "role": "VP Product",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "u-alex",
+        "name": "Alex Rivera",
+        "role": "Lead Architect",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+      }
+    ],
+    "tags": [
+      "Live Sync",
+      "Auto Recorded",
+      "AI Summarized"
+    ],
+    "summary": {
+      "executive": "In this session on \"Quick Team Sync\", Guest 5683, Sarah Chen, Alex Rivera converged on core deliverables. The conversation highlighted seamless automated recording, instant transcript generation, and real-time smart chaptering. The participants agreed that zero-friction asynchronous catchup transforms team velocity.",
+      "keyDecisions": [
+        "Approved the proposed workflow for \"Quick Team Sync\" with full team consensus.",
+        "Agreed that automatic recording and AI smart chapters will be the standard for all upcoming meetings.",
+        "Assigned immediate ownership of follow-up action items with target review dates."
+      ],
+      "topicsDiscussed": [
+        "Project milestones and delivery dates",
+        "Zero-friction meeting recording & transcript accuracy",
+        "Asynchronous team communication best practices",
+        "Action item ownership & accountability"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "chap-1",
+        "title": "Kickoff & Agenda Overview",
+        "startTime": 0,
+        "endTime": 10,
+        "summary": "Guest 5683 opened the session for \"Quick Team Sync\", outlining objectives and aligning the team on priority deliverables.",
+        "keyTakeaway": "Clear alignment established across all active attendees."
+      },
+      {
+        "id": "chap-2",
+        "title": "Core Architecture & Feature Review",
+        "startTime": 10,
+        "endTime": 20,
+        "summary": "Deep dive into implementation details, resolving open questions regarding performance and user experience.",
+        "keyTakeaway": "Key technical approach approved without blocking dependencies."
+      }
+    ],
+    "actionItems": [
+      {
+        "id": "act-1791274106327-1",
+        "task": "Review CatchUp AI recording and share summary with stakeholders",
+        "assignee": "Guest 5683",
+        "priority": "High",
+        "dueDate": "Oct 8, 2026",
+        "completed": false
+      },
+      {
+        "id": "act-1791274106327-2",
+        "task": "Finalize implementation tasks based on the discussed architecture",
+        "assignee": "Sarah Chen",
+        "priority": "Urgent",
+        "dueDate": "Oct 10, 2026",
+        "completed": false
+      },
+      {
+        "id": "act-1791274106327-3",
+        "task": "Schedule follow-up review for the upcoming milestone check-in",
+        "assignee": "Alex Rivera",
+        "priority": "Medium",
+        "dueDate": "Oct 12, 2026",
+        "completed": true
+      }
+    ],
+    "transcript": [
+      {
+        "speaker": "Guest 5683",
+        "timestamp": 0,
+        "timeFormatted": "00:00",
+        "text": ""
+      },
+      {
+        "speaker": "Guest 5683",
+        "timestamp": 0,
+        "timeFormatted": "00:00",
+        "text": ""
+      }
+    ],
+    "analytics": {
+      "speakerPercentages": [
+        {
+          "name": "Guest 5683",
+          "percentage": -42,
+          "color": "#6366f1"
+        },
+        {
+          "name": "Sarah Chen",
+          "percentage": 71,
+          "color": "#ec4899"
+        },
+        {
+          "name": "Alex Rivera",
+          "percentage": 71,
+          "color": "#10b981"
+        }
+      ],
+      "sentiment": "Highly Collaborative & Engaging",
+      "engagementScore": 92,
+      "totalWordsSpoken": 45,
+      "pace": "Optimal (135 words/min)"
+    },
+    "hasCustomVideo": true
+  },
+  {
+    "id": "meeting-seed-1",
+    "title": "CatchUp AI Engineering & WebRTC Architecture Sync",
+    "date": "2026-10-04T14:30:00Z",
+    "durationSeconds": 1122,
+    "durationFormatted": "18:42",
+    "host": {
+      "id": "u-alex",
+      "name": "Alex Rivera",
+      "role": "Lead Architect",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "participants": [
+      {
+        "id": "u-alex",
+        "name": "Alex Rivera",
+        "role": "Lead Architect",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "u-sarah",
+        "name": "Sarah Chen",
+        "role": "VP Product",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "u-priya",
+        "name": "Priya Sharma",
+        "role": "Design Lead",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "u-marcus",
+        "name": "Marcus Vance",
+        "role": "DevOps Engineer",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+      }
+    ],
+    "tags": [
+      "Architecture",
+      "WebRTC",
+      "AI Summarization",
+      "Performance"
+    ],
+    "summary": {
+      "executive": "The engineering team evaluated the real-time recording and automated post-meeting AI pipeline for CatchUp AI. Alex presented the client-side MediaRecorder pipeline coupled with server-side WebSocket signaling. The team verified that multi-track audio mixing ensures crystal clear transcripts even with simultaneous crosstalk. Target latency for AI summary generation is set under 15 seconds after call termination.",
+      "keyDecisions": [
+        "Adopt dual-mode recording: client-side composite stream capture + server-side audio backup.",
+        "Use Web Speech API for zero-latency live captions during the live call, and enhance with deep LLM post-processing.",
+        "Store video recordings in IndexedDB locally with cloud synchronization capability.",
+        "Set maximum auto-summary generation target to under 15 seconds post call."
+      ],
+      "topicsDiscussed": [
+        "WebRTC peer mesh vs SFU fallback under high concurrency",
+        "MediaRecorder codec compatibility across Chromium and Safari",
+        "Structured JSON schema extraction for AI action items",
+        "Interactive timeline scrubbing with chapter bounding boxes"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "c1",
+        "title": "Welcome & Sprint Goals",
+        "startTime": 0,
+        "endTime": 195,
+        "summary": "Sarah kicked off the meeting outlining the core milestone: seamless zero-click recording for all meetings on the platform.",
+        "keyTakeaway": "Every meeting should be treated as permanent collective intelligence."
+      },
+      {
+        "id": "c2",
+        "title": "WebRTC Multi-Track Audio Architecture",
+        "startTime": 195,
+        "endTime": 580,
+        "summary": "Alex walked through the audio context merger that normalizes participant volumes and timestamps speaker switches.",
+        "keyTakeaway": "Audio normalization prevents quiet speakers from being lost in the transcript."
+      },
+      {
+        "id": "c3",
+        "title": "AI Pipeline: Summary & Action Items",
+        "startTime": 580,
+        "endTime": 890,
+        "summary": "Priya and Alex reviewed the CatchUp AI post-meeting view: interactive video scrubber, synchronized transcript, and 1-click Slack export.",
+        "keyTakeaway": "Users should be able to catch up on a 30-minute meeting in under 2 minutes."
+      },
+      {
+        "id": "c4",
+        "title": "Security, Storage & Next Steps",
+        "startTime": 890,
+        "endTime": 1122,
+        "summary": "Marcus discussed end-to-end encryption for stored blobs and defined next week's load-testing benchmark.",
+        "keyTakeaway": "Load test 50 concurrent rooms with auto-recording enabled."
+      }
+    ],
+    "actionItems": [
+      {
+        "id": "act-1",
+        "task": "Benchmark Opus audio encoder bitrate for low-bandwidth participants",
+        "assignee": "Alex Rivera",
+        "priority": "High",
+        "dueDate": "Oct 08, 2026",
+        "completed": false
+      },
+      {
+        "id": "act-2",
+        "task": "Add 1-click Markdown export format for meeting minutes",
+        "assignee": "Priya Sharma",
+        "priority": "Medium",
+        "dueDate": "Oct 09, 2026",
+        "completed": false
+      },
+      {
+        "id": "act-3",
+        "task": "Configure automated cleanup for temporary recording chunks",
+        "assignee": "Marcus Vance",
+        "priority": "High",
+        "dueDate": "Oct 10, 2026",
+        "completed": false
+      },
+      {
+        "id": "act-4",
+        "task": "Finalize PRD for team workspace permission model",
+        "assignee": "Sarah Chen",
+        "priority": "Medium",
+        "dueDate": "Oct 12, 2026",
+        "completed": true
+      }
+    ],
+    "transcript": [
+      {
+        "speaker": "Sarah Chen",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 12,
+        "timeFormatted": "00:12",
+        "text": "Good afternoon everyone! Let's get right into our engineering sync. The primary agenda today is CatchUp AI's recording pipeline and post-meeting intelligence."
+      },
+      {
+        "speaker": "Alex Rivera",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 45,
+        "timeFormatted": "00:45",
+        "text": "Thanks Sarah. We've finalized the client-side MediaRecorder pipeline. As soon as any meeting starts, it seamlessly records both the composite canvas and multi-track audio."
+      },
+      {
+        "speaker": "Priya Sharma",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 115,
+        "timeFormatted": "01:55",
+        "text": "From a user perspective, this completely removes the pain of remembering to hit record or having a bot intrude awkwardly into the room."
+      },
+      {
+        "speaker": "Alex Rivera",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 220,
+        "timeFormatted": "03:40",
+        "text": "Exactly. And for missed meetings, anyone with the link can scrub through chapters, click any line in the transcript to jump to that moment in the video, or simply read the TL;DR."
+      },
+      {
+        "speaker": "Marcus Vance",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 410,
+        "timeFormatted": "06:50",
+        "text": "Regarding server load: the WebSocket signaling handles peer coordination, while the heavy video rendering is handled smoothly on modern browsers via Canvas and WebCodecs."
+      },
+      {
+        "speaker": "Sarah Chen",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 620,
+        "timeFormatted": "10:20",
+        "text": "The action items extraction looks incredible. Can we ensure each action item has a clear assignee and priority tag?"
+      },
+      {
+        "speaker": "Alex Rivera",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 740,
+        "timeFormatted": "12:20",
+        "text": "Yes, our prompt schema extracts the task, speaker context, designated owner, and target deadline into clean structured JSON."
+      },
+      {
+        "speaker": "Sarah Chen",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 980,
+        "timeFormatted": "16:20",
+        "text": "Awesome. Let's make sure the interactive Q&A assistant is prominently placed so anyone can query the meeting directly."
+      },
+      {
+        "speaker": "Alex Rivera",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 1090,
+        "timeFormatted": "18:10",
+        "text": "Done. CatchUp Copilot is ready. Let's wrap up and get this deployed for testing."
+      }
+    ],
+    "analytics": {
+      "speakerPercentages": [
+        {
+          "name": "Alex Rivera",
+          "percentage": 42,
+          "color": "#6366f1"
+        },
+        {
+          "name": "Sarah Chen",
+          "percentage": 31,
+          "color": "#ec4899"
+        },
+        {
+          "name": "Priya Sharma",
+          "percentage": 15,
+          "color": "#10b981"
+        },
+        {
+          "name": "Marcus Vance",
+          "percentage": 12,
+          "color": "#f59e0b"
+        }
+      ],
+      "sentiment": "Highly Collaborative & Productive",
+      "engagementScore": 94,
+      "totalWordsSpoken": 2480,
+      "pace": "Energetic (140 wpm)"
+    }
+  },
+  {
+    "id": "meeting-seed-2",
+    "title": "Q4 Product Strategy: Asynchronous Meeting Copilot",
+    "date": "2026-10-03T11:00:00Z",
+    "durationSeconds": 1455,
+    "durationFormatted": "24:15",
+    "host": {
+      "id": "u-sarah",
+      "name": "Sarah Chen",
+      "role": "VP Product",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80"
+    },
+    "participants": [
+      {
+        "id": "u-sarah",
+        "name": "Sarah Chen",
+        "role": "VP Product",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "u-david",
+        "name": "David Kim",
+        "role": "Growth Lead",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "u-priya",
+        "name": "Priya Sharma",
+        "role": "Design Lead",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+      }
+    ],
+    "tags": [
+      "Product",
+      "Strategy",
+      "CatchUp Copilot",
+      "Growth"
+    ],
+    "summary": {
+      "executive": "Discussion of CatchUp AI's asynchronous collaboration vision. Sarah outlined how remote distributed teams across global timezones lose 6+ hours weekly attending redundant syncs. With automated recording and intelligent TL;DRs, team members in EMEA and APAC can stay fully informed in 5 minutes without sleep disruption.",
+      "keyDecisions": [
+        "Ship the 'CatchUp in 2 Minutes' TL;DR widget as the default view.",
+        "Add automated Slack / Discord webhook notifications when a new meeting summary is ready.",
+        "Introduce interactive Ask AI Copilot for meeting queries.",
+        "Offer 1-click video clip sharing for key moments."
+      ],
+      "topicsDiscussed": [
+        "Async culture adoption among enterprise remote teams",
+        "Frictionless recording vs privacy control preferences",
+        "Slack integration for morning CatchUp digests"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "c1",
+        "title": "The Global Timezone Dilemma",
+        "startTime": 0,
+        "endTime": 310,
+        "summary": "Review of user feedback: teams in Tokyo and London attending 11 PM calls just to give a 3-minute update.",
+        "keyTakeaway": "Sync meetings should be recorded and distilled automatically."
+      },
+      {
+        "id": "c2",
+        "title": "CatchUp AI Feature Deep Dive",
+        "startTime": 310,
+        "endTime": 850,
+        "summary": "Deep dive into auto-chapters, instant key takeaways, and speaker-attributed transcripts.",
+        "keyTakeaway": "Users retain 3x more information when reading structured chapters alongside audio."
+      },
+      {
+        "id": "c3",
+        "title": "GTM Strategy & Beta Testing",
+        "startTime": 850,
+        "endTime": 1455,
+        "summary": "David outlined the launch timeline and invite-only beta cohort of 50 remote-first engineering teams.",
+        "keyTakeaway": "Launch closed beta next month."
+      }
+    ],
+    "actionItems": [
+      {
+        "id": "act-201",
+        "task": "Create landing page demo showcasing interactive CatchUp scrubber",
+        "assignee": "David Kim",
+        "priority": "High",
+        "dueDate": "Oct 11, 2026",
+        "completed": false
+      },
+      {
+        "id": "act-202",
+        "task": "Draft onboarding email sequence explaining automated recording workflow",
+        "assignee": "Sarah Chen",
+        "priority": "Medium",
+        "dueDate": "Oct 14, 2026",
+        "completed": true
+      }
+    ],
+    "transcript": [
+      {
+        "speaker": "Sarah Chen",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 15,
+        "timeFormatted": "00:15",
+        "text": "Welcome team. We are seeing incredible enthusiasm for the CatchUp paradigm. People love not having to manually click record or wait 2 hours for a cloud recording to render."
+      },
+      {
+        "speaker": "David Kim",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 120,
+        "timeFormatted": "02:00",
+        "text": "The feedback from our pilot design partners is that CatchUp AI turns meetings into searchable knowledge assets rather than disposable ephemeral calls."
+      },
+      {
+        "speaker": "Priya Sharma",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+        "timestamp": 350,
+        "timeFormatted": "05:50",
+        "text": "The UI must reflect that. The moment a user opens a past meeting, the summary and action items must be front and center, with the video synchronized beside it."
+      }
+    ],
+    "analytics": {
+      "speakerPercentages": [
+        {
+          "name": "Sarah Chen",
+          "percentage": 52,
+          "color": "#ec4899"
+        },
+        {
+          "name": "David Kim",
+          "percentage": 28,
+          "color": "#3b82f6"
+        },
+        {
+          "name": "Priya Sharma",
+          "percentage": 20,
+          "color": "#10b981"
+        }
+      ],
+      "sentiment": "Strategic & Visionary",
+      "engagementScore": 91,
+      "totalWordsSpoken": 3120,
+      "pace": "Deliberate (130 wpm)"
+    }
+  }
+]
