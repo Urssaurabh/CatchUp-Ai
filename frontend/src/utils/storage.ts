@@ -4,6 +4,9 @@ const DB_NAME = 'CatchUpAI_DB';
 const DB_VERSION = 1;
 const VIDEO_STORE = 'recorded_videos';
 
+// Backend base URL — uses VITE_BACKEND_URL in production, empty string in dev (Vite proxy handles it)
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '';
+
 // Open IndexedDB database
 function openDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -55,7 +58,7 @@ export async function getVideoBlob(meetingId: string): Promise<Blob | null> {
 // Fetch meetings from Backend API with local fallback
 export async function fetchMeetings(): Promise<Meeting[]> {
   try {
-    const res = await fetch('/api/meetings');
+    const res = await fetch(`${BACKEND_URL}/api/meetings`);
     if (res.ok) {
       const data = await res.json();
       if (Array.isArray(data) && data.length > 0) {
@@ -88,7 +91,7 @@ export async function saveMeeting(meeting: Meeting, token?: string | null): Prom
       headers['Authorization'] = `Bearer ${activeToken}`;
     }
 
-    await fetch('/api/meetings', {
+    await fetch(`${BACKEND_URL}/api/meetings`, {
       method: 'POST',
       headers,
       body: JSON.stringify(meeting),
@@ -121,7 +124,7 @@ export async function deleteMeeting(meetingId: string, token?: string | null): P
     headers['Authorization'] = `Bearer ${activeToken}`;
   }
 
-  const res = await fetch(`/api/meetings/${meetingId}`, {
+  const res = await fetch(`${BACKEND_URL}/api/meetings/${meetingId}`, {
     method: 'DELETE',
     headers,
   });

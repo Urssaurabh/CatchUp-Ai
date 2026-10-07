@@ -28,7 +28,23 @@ const io = new Server(server, {
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/catchup_ai';
 
-app.use(cors());
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, curl, Render health checks)
+    if (!origin) return callback(null, true);
+    const allowed = [
+      process.env.FRONTEND_URL,            // e.g. https://catchup-ai.vercel.app
+      'http://localhost:5173',
+      'http://localhost:3000',
+    ].filter(Boolean);
+    if (allowed.some((o) => origin.startsWith(o))) {
+      callback(null, true);
+    } else {
+      callback(null, true); // allow all during initial deploy; tighten after first deploy
+    }
+  },
+  credentials: true,
+}));
 app.use(express.json({ limit: '50mb' }));
 
 // Ensure data folder exists for JSON fallback

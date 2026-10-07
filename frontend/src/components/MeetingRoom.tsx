@@ -247,7 +247,12 @@ export const MeetingRoom: React.FC<MeetingRoomProps> = ({
 
     async function initRoom() {
       // Connect to Socket.io
-      const socket = io();
+      // In production: connects to Render backend via VITE_BACKEND_URL
+      // In development: Vite proxy handles it (relative URL works)
+      const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '';
+      const socket = io(BACKEND_URL, {
+        transports: ['websocket', 'polling'],
+      });
       socketRef.current = socket;
 
       // Access Camera and Microphone
