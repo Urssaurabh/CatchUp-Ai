@@ -75,7 +75,14 @@ export const MeetingRoom: React.FC<MeetingRoomProps> = ({
     {
       id: localUserId,
       name: user?.name || userName,
-      role: user?.role === 'admin' ? 'Host (Admin)' : 'Host',
+      // Guests joining via share link get Participant role, authenticated users keep their role
+      role: user?.role === 'admin'
+        ? 'Host (Admin)'
+        : user
+        ? 'Host'
+        : new URLSearchParams(window.location.search).get('room')
+        ? 'Participant'
+        : 'Host',
       avatar: user?.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(user?.name || userName)}`,
       color: '#6366f1',
     },
@@ -281,10 +288,17 @@ export const MeetingRoom: React.FC<MeetingRoomProps> = ({
       }
 
       // Join room with user profile
+      // Determine role: if this user started the meeting (via handleStartMeeting), they are Host
+      // If they joined via a shared link, they are Participant
+      const isFromUrl = new URLSearchParams(window.location.search).get('room') === roomId;
+      const isHostRole = user?.role === 'admin' ? 'Host (Admin)' : 'Host';
+      // Guests who joined via shared link get Participant role
+      const myRole = !user && isFromUrl ? 'Participant' : isHostRole;
+
       const userPayload = {
         id: localUserId,
         name: user?.name || userName,
-        role: user?.role === 'admin' ? 'Host (Admin)' : 'Host',
+        role: myRole,
         avatar: user?.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(user?.name || userName)}`,
         color: '#6366f1',
       };
@@ -699,7 +713,8 @@ export const MeetingRoom: React.FC<MeetingRoomProps> = ({
         }
       }
 
-      onEndMeeting(videoBlob, transcript, elapsedSeconds);
+      // Pass the live participants list (real people who joined via link)
+      onEndMeeting(videoBlob, transcript, elapsedSeconds, participants);
     }
   };
 

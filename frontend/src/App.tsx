@@ -24,7 +24,6 @@ export function App() {
   const [userName, setUserName] = useState<string>(() => {
     return localStorage.getItem('catchup_user_name') || 'Guest ' + Math.floor(1000 + Math.random() * 9000);
   });
-  const [enableSimulatedBots, setEnableSimulatedBots] = useState(false);
 
   // Join prompt modal state (when user opens a ?room= link)
   const [pendingJoinRoomId, setPendingJoinRoomId] = useState<string | null>(null);
@@ -51,7 +50,15 @@ export function App() {
       const catchupParam = params.get('catchup');
 
       if (roomParam) {
-        setPendingJoinRoomId(roomParam.trim());
+        // If user is already logged in, join directly; otherwise show name prompt
+        if (user) {
+          setActiveRoomId(roomParam.trim());
+          setActiveMeetingTitle(`Room ${roomParam.trim()}`);
+          setCurrentView('meeting');
+          window.history.pushState(null, '', `?room=${roomParam.trim()}`);
+        } else {
+          setPendingJoinRoomId(roomParam.trim());
+        }
       } else if (catchupParam) {
         const found = data.find((m) => m.id === catchupParam.trim());
         if (found) {
@@ -61,15 +68,18 @@ export function App() {
       }
     }
     init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Handle starting a new meeting (as Host)
-  const handleStartMeeting = (title?: string, bots: boolean = false) => {
-    const randomCode = Math.random().toString(36).substring(2, 6) + '-' + Math.random().toString(36).substring(2, 6);
+  const handleStartMeeting = (title?: string) => {
+    const randomCode =
+      Math.random().toString(36).substring(2, 6) + '-' + Math.random().toString(36).substring(2, 6);
 
     setActiveRoomId(randomCode);
-    setActiveMeetingTitle(title || `Live Sync (${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})`);
-    setEnableSimulatedBots(bots);
+    setActiveMeetingTitle(
+      title || `Live Sync (${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})`
+    );
     setCurrentView('meeting');
 
     // Sync real URL for easy sharing
@@ -81,24 +91,24 @@ export function App() {
     e.preventDefault();
     if (!pendingJoinRoomId) return;
 
-    const finalName = joinNameInput.trim() || userName || 'Guest';
+    const finalName = joinNameInput.trim() || (user?.name) || userName || 'Guest';
     setUserName(finalName);
     localStorage.setItem('catchup_user_name', finalName);
 
     setActiveRoomId(pendingJoinRoomId);
     setActiveMeetingTitle(`Room ${pendingJoinRoomId}`);
-    setEnableSimulatedBots(false);
     setPendingJoinRoomId(null);
     setCurrentView('meeting');
 
     window.history.pushState(null, '', `?room=${pendingJoinRoomId}`);
   };
 
-  // Handle ending a live meeting
+  // Handle ending a live meeting — receives finalParticipants from MeetingRoom (real socket users)
   const handleEndMeeting = async (
     recordedBlob: Blob | null,
     transcript: TranscriptItem[],
-    durationSeconds: number
+    durationSeconds: number,
+    finalParticipants: User[]
   ) => {
     const effectiveName = user?.name || userName;
     const hostUser: User = {
@@ -106,29 +116,15 @@ export function App() {
       name: effectiveName,
       email: user?.email,
       role: user ? (user.role === 'admin' ? 'Host (Admin)' : 'Host') : 'Host',
-      avatar: user?.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(effectiveName)}`,
+      avatar:
+        user?.avatar ||
+        `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(effectiveName)}`,
       color: '#6366f1',
     };
 
-    const participants: User[] = [
-      hostUser,
-      ...(enableSimulatedBots
-        ? [
-            {
-              id: 'u-sarah',
-              name: 'Sarah Chen',
-              role: 'VP Product',
-              avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
-            },
-            {
-              id: 'u-alex',
-              name: 'Alex Rivera',
-              role: 'Lead Architect',
-              avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-            },
-          ]
-        : []),
-    ];
+    // Use the real participants that joined via the link
+    const participants: User[] =
+      finalParticipants && finalParticipants.length > 0 ? finalParticipants : [hostUser];
 
     const aiOutput = generateAiMeetingCatchUp(
       activeMeetingTitle,
@@ -200,8 +196,9 @@ export function App() {
         setCurrentView('dashboard');
         window.history.pushState(null, '', window.location.pathname);
       }
-    } catch (err: any) {
-      alert(err.message || 'Failed to delete meeting');
+    } catch (err: unknown) {
+      const error = err as Error;
+      alert(error.message || 'Failed to delete meeting');
     }
   };
 
@@ -226,7 +223,7 @@ export function App() {
               window.history.pushState(null, '', window.location.pathname);
             }
           }}
-          onStartMeeting={() => handleStartMeeting('Instant CatchUp Session', false)}
+          onStartMeeting={() => handleStartMeeting('Instant CatchUp Session')}
           onOpenHelp={() => setShowGuide(true)}
         />
       )}
@@ -235,7 +232,7 @@ export function App() {
       {currentView === 'dashboard' && (
         <Dashboard
           meetings={meetings}
-          onStartMeeting={(title, bots) => handleStartMeeting(title, bots)}
+          onStartMeeting={(title) => handleStartMeeting(title)}
           onSelectMeeting={handleSelectMeeting}
           onDeleteMeeting={handleDeleteMeeting}
         />
@@ -245,8 +242,7 @@ export function App() {
         <MeetingRoom
           meetingTitle={activeMeetingTitle}
           roomId={activeRoomId}
-          userName={userName}
-          enableSimulatedBots={enableSimulatedBots}
+          userName={user?.name || userName}
           onEndMeeting={handleEndMeeting}
         />
       )}
@@ -283,15 +279,19 @@ export function App() {
             </div>
 
             <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: '1.25rem' }}>
-              You've been invited to join room: <strong style={{ color: '#fff' }}>{pendingJoinRoomId}</strong>.
-              Enter your name to connect via real-time WebRTC.
+              You've been invited to join room:{' '}
+              <strong style={{ color: '#fff' }}>{pendingJoinRoomId}</strong>. Enter your name to
+              connect via real-time video.
             </p>
 
-            <form onSubmit={handleConfirmJoin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}>
+            <form
+              onSubmit={handleConfirmJoin}
+              style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}
+            >
               <input
                 type="text"
                 autoFocus
-                placeholder="Enter your name (e.g. Alex, Maya)..."
+                placeholder={user ? user.name : 'Enter your name (e.g. Alex, Maya)...'}
                 value={joinNameInput}
                 onChange={(e) => setJoinNameInput(e.target.value)}
                 style={{
