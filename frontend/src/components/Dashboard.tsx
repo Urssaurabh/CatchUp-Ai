@@ -12,7 +12,6 @@ import {
   TrendingUp,
   BrainCircuit,
   Trash2,
-  Flame,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
