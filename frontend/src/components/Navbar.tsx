@@ -1,5 +1,5 @@
 import React from 'react';
-import { Video, Sparkles, LayoutDashboard, PlusCircle, HelpCircle, LogIn, LogOut, Shield, User as UserIcon } from 'lucide-react';
+import { Video, LayoutDashboard, PlusCircle, HelpCircle, LogIn, LogOut, Shield, User as UserIcon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 interface NavbarProps {
@@ -46,22 +46,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       </nav>
 
       <div className="nav-actions">
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.4rem',
-            fontSize: '0.8rem',
-            color: '#10b981',
-            background: 'rgba(16, 185, 129, 0.1)',
-            padding: '0.3rem 0.7rem',
-            borderRadius: '9999px',
-            border: '1px solid rgba(16, 185, 129, 0.25)',
-          }}
-        >
-          <Sparkles size={13} />
-          <span>AI Engine Ready</span>
-        </div>
 
         <button
           className="btn-secondary"
