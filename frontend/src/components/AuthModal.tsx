@@ -97,9 +97,12 @@ export function AuthModal() {
       }}
     >
       <div
+        className="auth-modal-card"
         style={{
           width: '100%',
           maxWidth: '460px',
+          maxHeight: '92vh',
+          overflowY: 'auto',
           background: 'linear-gradient(145deg, rgba(23, 27, 44, 0.95), rgba(13, 16, 27, 0.98))',
           borderRadius: '1.25rem',
           border: '1px solid rgba(255, 255, 255, 0.12)',

@@ -126,16 +126,17 @@ export const JoinLobby: React.FC<JoinLobbyProps> = ({ roomId, onJoin, onCancel }
       }}
     >
       <div
+        className="join-lobby-card"
         style={{
           width: '100%',
           maxWidth: '840px',
+          maxHeight: '92vh',
+          overflowY: 'auto',
           background: 'linear-gradient(145deg, rgba(23, 27, 44, 0.95), rgba(13, 16, 27, 0.98))',
           borderRadius: '1.25rem',
           border: '1px solid rgba(255, 255, 255, 0.12)',
           boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(99, 102, 241, 0.15)',
           overflow: 'hidden',
-          display: 'grid',
-          gridTemplateColumns: 'minmax(320px, 1.2fr) minmax(280px, 1fr)',
         }}
       >
         {/* Left: Camera Preview Box */}

@@ -783,36 +783,22 @@ export const MeetingRoom: React.FC<MeetingRoomProps> = ({
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div className="room-header-actions">
           {/* Share Link Header Button */}
           <button
+            className="room-share-btn"
             onClick={handleCopyLink}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 14px',
-              borderRadius: '8px',
-              border: '1px solid rgba(99, 102, 241, 0.4)',
-              background: 'rgba(99, 102, 241, 0.15)',
-              color: '#c7d2fe',
-              fontSize: '0.82rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-            }}
           >
             {copiedLink ? <Check size={14} color="#10b981" /> : <Share2 size={14} />}
-            <span>{copiedLink ? 'Link Copied!' : 'Share Invite Link'}</span>
+            <span className="room-btn-text">{copiedLink ? 'Link Copied!' : 'Share Invite Link'}</span>
           </button>
 
           <button
-            className="btn-danger"
-            style={{ padding: '0.45rem 1rem', fontSize: '0.85rem' }}
+            className="btn-danger room-end-btn"
             onClick={handleEndCall}
           >
             <PhoneOff size={16} />
-            <span>End Call</span>
+            <span className="room-btn-text">End Call</span>
           </button>
         </div>
       </header>
@@ -834,23 +820,8 @@ export const MeetingRoom: React.FC<MeetingRoomProps> = ({
         <main className="video-stage">
           {/* If Solo, show prominent waiting & invite banner */}
           {participants.length === 1 && (
-            <div
-              style={{
-                position: 'absolute',
-                top: '20px',
-                zIndex: 20,
-                background: 'rgba(15, 23, 42, 0.88)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(99, 102, 241, 0.3)',
-                borderRadius: '12px',
-                padding: '12px 20px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '16px',
-                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.4)',
-              }}
-            >
-              <div>
+            <div className="solo-invite-banner">
+              <div className="solo-invite-text">
                 <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>
                   Waiting for other participants to join...
                 </div>
@@ -859,17 +830,7 @@ export const MeetingRoom: React.FC<MeetingRoomProps> = ({
                 </div>
               </div>
 
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: 'rgba(0, 0, 0, 0.3)',
-                  padding: '6px 12px',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                }}
-              >
+              <div className="solo-invite-copy-box">
                 <code style={{ fontSize: '0.75rem', color: '#c7d2fe' }}>{inviteUrl}</code>
                 <button
                   onClick={handleCopyLink}

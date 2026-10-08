@@ -194,6 +194,105 @@ body {
   gap: 1rem;
 }
 
+.nav-user-container {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.nav-user-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 8px 4px 5px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-user-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.2);
+  object-fit: cover;
+}
+
+.nav-user-name {
+  font-size: 0.8125rem;
+  fontWeight: 600;
+  color: #f8fafc;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-user-role {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.nav-user-role.admin {
+  background: rgba(168, 85, 247, 0.25);
+  color: #d8b4fe;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.nav-user-role.member {
+  background: rgba(56, 189, 248, 0.2);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.nav-logout-btn {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #fca5a5;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.nav-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.nav-signin-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  background: rgba(99, 102, 241, 0.15);
+  color: #c7d2fe;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-signin-btn:hover {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: rgba(99, 102, 241, 0.6);
+}
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -908,20 +1007,28 @@ body {
 }
 
 /* Room Controls Bar */
-.room-controls-bar {
-  height: 80px;
+.room-controls-bar,
+.room-control-bar {
+  height: 76px;
   background: rgba(10, 14, 26, 0.95);
   backdrop-filter: blur(16px);
   border-top: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 1.25rem;
   padding: 0 1.5rem;
   z-index: 30;
 }
 
-.ctrl-btn {
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ctrl-btn,
+.control-btn {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -934,23 +1041,28 @@ body {
   cursor: pointer;
   transition: var(--transition);
   position: relative;
+  flex-shrink: 0;
 }
 
-.ctrl-btn:hover {
+.ctrl-btn:hover,
+.control-btn:hover {
   background: rgba(255, 255, 255, 0.16);
   transform: translateY(-2px);
 }
 
-.ctrl-btn.off {
+.ctrl-btn.off,
+.control-btn.danger {
   background: rgba(239, 68, 68, 0.2);
   border-color: rgba(239, 68, 68, 0.4);
   color: #f87171;
 }
 
-.ctrl-btn.active-tab {
+.ctrl-btn.active-tab,
+.control-btn.active {
   background: var(--primary);
   border-color: var(--primary-light);
   box-shadow: 0 0 14px var(--primary-glow);
+  color: #fff;
 }
 
 .ctrl-badge {
@@ -963,6 +1075,73 @@ body {
   font-weight: 700;
   padding: 0.1rem 0.35rem;
   border-radius: var(--radius-full);
+}
+
+/* Solo Invite Banner */
+.solo-invite-banner {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  max-width: 90%;
+}
+
+.solo-invite-copy-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header buttons in Meeting Room */
+.room-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.room-share-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  background: rgba(99, 102, 241, 0.15);
+  color: #c7d2fe;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.room-share-btn:hover {
+  background: rgba(99, 102, 241, 0.25);
+}
+
+.room-end-btn {
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+}
+
+/* Join Lobby Card */
+.join-lobby-card {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.2fr) minmax(280px, 1fr);
 }
 
 /* Side Drawers (Chat, Attendees, AI Draft) */
@@ -1090,16 +1269,71 @@ body {
   z-index: 50;
 }
 
-.reaction-emoji-btn {
+.reaction-emoji-btn,
+.reaction-item-btn {
   background: transparent;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease;
+  padding: 4px 6px;
+  border-radius: 6px;
+  line-height: 1;
 }
 
-.reaction-emoji-btn:hover {
+.reaction-emoji-btn:hover,
+.reaction-item-btn:hover {
   transform: scale(1.3);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Participants Drawer Items */
+.participant-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.participant-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.participant-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.participant-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.participant-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.participant-role {
+  font-size: 0.72rem;
+  color: var(--text-muted);
 }
 
 /* ==========================================================
@@ -1120,6 +1354,8 @@ body {
 .processing-card {
   width: 100%;
   max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
   background: var(--bg-surface);
   border: 1px solid var(--border-glow);
   border-radius: var(--radius-lg);
@@ -2020,4 +2256,509 @@ body {
 .opt-text p {
   font-size: 0.78rem;
   color: var(--text-muted);
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN SYSTEM & MEDIA QUERIES
+   Full responsiveness across Desktop, Tablet, and Mobile devices
+   ========================================================== */
+
+/* Global container & touch fixes */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+img, video, canvas {
+  max-width: 100%;
+}
+
+/* 1. Large Tablet / Narrow Laptop (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    padding: 2rem 1.5rem 3rem;
+    gap: 2rem;
+  }
+
+  .hero-section {
+    padding: 2.25rem 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .meetings-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .catchup-hub-container {
+    padding: 1.5rem;
+  }
+
+  .catchup-split-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .panel-tab-content {
+    max-height: 520px;
+  }
+}
+
+/* 2. Tablets & Mobile Landscape (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Global */
+  body {
+    background-attachment: scroll;
+  }
+
+  /* Navbar */
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .brand-text {
+    font-size: 1.15rem;
+  }
+
+  .brand-tag {
+    display: none;
+  }
+
+  .nav-links {
+    padding: 0.2rem;
+    gap: 0.25rem;
+  }
+
+  .nav-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .nav-actions {
+    gap: 0.5rem;
+  }
+
+  /* Dashboard */
+  .dashboard-container {
+    padding: 1.5rem 1rem 2.5rem;
+    gap: 1.75rem;
+  }
+
+  .hero-section {
+    padding: 2rem 1.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  .hero-title {
+    font-size: 1.85rem;
+    line-height: 1.25;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding-top: 1.5rem;
+  }
+
+  .feed-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .meetings-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  /* Meeting Room */
+  .room-header {
+    height: 56px;
+    padding: 0 1rem;
+  }
+
+  .room-drawer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    border-left: none;
+  }
+
+  .video-stage {
+    padding: 0.5rem;
+  }
+
+  .solo-invite-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    width: calc(100% - 2rem);
+    top: 10px;
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .solo-invite-copy-box {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .solo-invite-copy-box code {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 70px);
+  }
+
+  /* CatchUp Hub */
+  .catchup-hub-container {
+    padding: 1rem 0.85rem 3rem;
+    gap: 1.25rem;
+  }
+
+  .catchup-top-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .catchup-title {
+    font-size: 1.5rem;
+  }
+
+  .catchup-actions-row {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .catchup-actions-row button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .join-lobby-card {
+    grid-template-columns: 1fr;
+  }
+
+  .join-lobby-card > div:first-child {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+}
+
+/* 3. Standard Mobile Phones (max-width: 640px) */
+@media (max-width: 640px) {
+  /* Navbar */
+  .navbar {
+    padding: 0.55rem 0.75rem;
+  }
+
+  .nav-brand {
+    gap: 0.5rem;
+  }
+
+  .brand-icon-wrapper {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand-text {
+    font-size: 1.05rem;
+  }
+
+  .nav-btn {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.78rem;
+  }
+
+  .nav-btn span {
+    display: none;
+  }
+
+  .nav-btn-label {
+    display: none;
+  }
+
+  .nav-guide-btn,
+  .nav-meet-btn,
+  .nav-logout-btn {
+    padding: 0.45rem 0.65rem !important;
+  }
+
+  .nav-user-container {
+    gap: 0.35rem;
+    padding-left: 0.35rem;
+  }
+
+  .nav-user-name {
+    display: none;
+  }
+
+  .nav-user-role {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+  }
+
+  /* Hero & Dashboard */
+  .hero-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.55rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-actions .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .room-input-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .room-input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .stat-item {
+    gap: 0.65rem;
+  }
+
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .stat-number {
+    font-size: 1.15rem;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+  }
+
+  .meetings-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card-thumbnail-wrap {
+    height: 160px;
+  }
+
+  /* Meeting Room */
+  .meeting-room-wrapper {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .room-header {
+    height: 52px;
+    padding: 0 0.65rem;
+  }
+
+  .room-header-left {
+    gap: 0.5rem;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .room-title-info {
+    min-width: 0;
+  }
+
+  .room-meeting-title {
+    font-size: 0.84rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+  }
+
+  .rec-badge {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .room-header-actions {
+    gap: 0.4rem;
+  }
+
+  .room-btn-text {
+    display: none;
+  }
+
+  .room-share-btn,
+  .room-end-btn {
+    padding: 0.4rem 0.6rem !important;
+  }
+
+  .room-controls-bar,
+  .room-control-bar {
+    height: 64px;
+    padding: 0 0.5rem;
+    gap: 0.4rem;
+    justify-content: space-around;
+  }
+
+  .control-group {
+    gap: 0.35rem;
+  }
+
+  .ctrl-btn,
+  .control-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ctrl-btn svg,
+  .control-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .stage-grid {
+    gap: 0.5rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .grid-3, .grid-4 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .avatar-halo {
+    width: 64px;
+    height: 64px;
+    font-size: 1.5rem;
+  }
+
+  .live-subtitles-bar {
+    font-size: 0.78rem;
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  /* Modals */
+  .modal-backdrop {
+    padding: 0.75rem;
+  }
+
+  .processing-card {
+    padding: 1.5rem 1.15rem;
+    border-radius: var(--radius-md);
+  }
+
+  .processing-title {
+    font-size: 1.2rem;
+  }
+
+  /* CatchUp Hub controls */
+  .player-controls-strip {
+    padding: 0.65rem 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .player-controls-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .panel-tab-btn {
+    padding: 0.75rem 0.85rem;
+    font-size: 0.78rem;
+  }
+
+  .panel-tab-content {
+    padding: 1rem 0.85rem;
+  }
+
+  .analytics-stat-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 4. Small Mobile Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.4rem;
+  }
+
+  .hero-pill {
+    font-size: 0.74rem;
+    padding: 0.25rem 0.65rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .catchup-title {
+    font-size: 1.3rem;
+  }
+
+  .catchup-heading-row {
+    gap: 0.5rem;
+  }
+
+  .catchup-pill-badge {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .catchup-sub-meta {
+    gap: 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .metric-value {
+    font-size: 1.2rem;
+  }
+
+  .room-meeting-title {
+    max-width: 90px;
+  }
 }
