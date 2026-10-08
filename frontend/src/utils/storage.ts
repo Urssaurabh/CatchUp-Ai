@@ -4,8 +4,10 @@ const DB_NAME = 'CatchUpAI_DB';
 const DB_VERSION = 1;
 const VIDEO_STORE = 'recorded_videos';
 
-// Backend base URL — uses VITE_BACKEND_URL in production, empty string in dev (Vite proxy handles it)
-export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '';
+// Backend base URL — uses VITE_BACKEND_URL in production, fallback to live Render backend, empty string in dev (Vite proxy handles it)
+export const BACKEND_URL =
+  import.meta.env.VITE_BACKEND_URL ||
+  (import.meta.env.PROD ? 'https://catchup-ai-fp97.onrender.com' : '');
 
 // Open IndexedDB database
 function openDB(): Promise<IDBDatabase> {

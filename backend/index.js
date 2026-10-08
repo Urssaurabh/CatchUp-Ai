@@ -38,14 +38,17 @@ app.use(cors({
     // Allow requests with no origin (mobile apps, curl, Render health checks)
     if (!origin) return callback(null, true);
     const allowed = [
-      process.env.FRONTEND_URL,            // e.g. https://catchup-ai.vercel.app
+      process.env.FRONTEND_URL,
+      'https://catch-up-ai-tqf8.vercel.app',
+      'https://catch-up-ai.vercel.app',
+      'https://catchup-ai.vercel.app',
       'http://localhost:5173',
       'http://localhost:3000',
     ].filter(Boolean);
-    if (allowed.some((o) => origin.startsWith(o))) {
+    if (allowed.some((o) => origin.startsWith(o)) || origin.endsWith('.vercel.app')) {
       callback(null, true);
     } else {
-      callback(null, true); // allow all during initial deploy; tighten after first deploy
+      callback(null, true); // fallback allow
     }
   },
   credentials: true,
@@ -220,6 +223,21 @@ mongoose.connection.on('connected', () => {
   isMongoConnected = true;
   console.log('[database] MongoDB connected event received');
   seedDefaultUsers();
+});
+
+// Root API Welcome Route
+app.get('/', (req, res) => {
+  res.json({
+    message: 'CatchUp AI Backend Server is running 🚀',
+    status: 'online',
+    database: isMongoConnected ? 'MongoDB (Connected)' : 'Local JSON Fallback',
+    healthCheck: '/api/health',
+    endpoints: {
+      auth: '/api/auth',
+      meetings: '/api/meetings',
+    },
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // API Routes

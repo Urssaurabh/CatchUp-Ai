@@ -18,6 +18,7 @@ import { useAuth } from '../context/AuthContext';
 interface DashboardProps {
   meetings: Meeting[];
   onStartMeeting: (title?: string) => void;
+  onJoinRoom?: (roomId: string) => void;
   onSelectMeeting: (meeting: Meeting) => void;
   onDeleteMeeting: (meetingId: string) => void;
 }
@@ -25,6 +26,7 @@ interface DashboardProps {
 export const Dashboard: React.FC<DashboardProps> = ({
   meetings,
   onStartMeeting,
+  onJoinRoom,
   onSelectMeeting,
   onDeleteMeeting,
 }) => {
@@ -50,8 +52,12 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
   const handleJoinWithCode = (e: React.FormEvent) => {
     e.preventDefault();
-    if (roomCode.trim()) {
-      onStartMeeting(`Room ${roomCode.trim()}`);
+    const clean = roomCode.trim();
+    if (!clean) return;
+    if (onJoinRoom) {
+      onJoinRoom(clean);
+    } else {
+      onStartMeeting(`Room ${clean}`);
     }
   };
 

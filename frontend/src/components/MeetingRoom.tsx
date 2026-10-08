@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import type { FloatingReaction, Message, TranscriptItem, User } from '../types';
 import { MeetingRecorder } from '../utils/videoRecorder';
-import { formatDuration } from '../utils/storage';
+import { formatDuration, BACKEND_URL } from '../utils/storage';
 import { useAuth } from '../context/AuthContext';
 
 interface MeetingRoomProps {
@@ -247,9 +247,7 @@ export const MeetingRoom: React.FC<MeetingRoomProps> = ({
 
     async function initRoom() {
       // Connect to Socket.io
-      // In production: connects to Render backend via VITE_BACKEND_URL
-      // In development: Vite proxy handles it (relative URL works)
-      const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '';
+      // Connect to Socket.io (Render backend in production or fallback, Vite proxy in dev)
       const socket = io(BACKEND_URL, {
         transports: ['websocket', 'polling'],
       });

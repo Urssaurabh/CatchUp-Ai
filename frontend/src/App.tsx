@@ -86,6 +86,16 @@ export function App() {
     window.history.pushState(null, '', `?room=${randomCode}`);
   };
 
+  // Handle joining a specific room code
+  const handleJoinRoom = (roomId: string) => {
+    const clean = roomId.trim();
+    if (!clean) return;
+    setActiveRoomId(clean);
+    setActiveMeetingTitle(`Room ${clean}`);
+    setCurrentView('meeting');
+    window.history.pushState(null, '', `?room=${clean}`);
+  };
+
   // Handle joining via URL or Room Code modal
   const handleConfirmJoin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -233,6 +243,7 @@ export function App() {
         <Dashboard
           meetings={meetings}
           onStartMeeting={(title) => handleStartMeeting(title)}
+          onJoinRoom={handleJoinRoom}
           onSelectMeeting={handleSelectMeeting}
           onDeleteMeeting={handleDeleteMeeting}
         />

@@ -156,6 +156,32 @@ CatchUp AI/
 
 ---
 
+## 🌐 Production Deployment
+
+### Frontend (Vercel)
+- **Live URL:** `https://catch-up-ai-tqf8.vercel.app` (or custom domain configured in Vercel project settings)
+- **Build Command:** `npm run vercel-build` (or `npm run build`)
+- **Output Directory:** `frontend/dist` (or `dist` if Root Directory is set to `frontend`)
+- **Environment Variable in Vercel:**
+  ```env
+  VITE_BACKEND_URL=https://catchup-ai-fp97.onrender.com
+  ```
+  *(Note: A built-in production fallback is already configured in the code as default).*
+
+### Backend (Render)
+- **Live URL:** `https://catchup-ai-fp97.onrender.com`
+- **Root Directory:** `backend`
+- **Start Command:** `node index.js`
+- **Environment Variables in Render:**
+  ```env
+  NODE_ENV=production
+  MONGODB_URI=your_mongodb_atlas_connection_string
+  JWT_SECRET=your_jwt_secret
+  FRONTEND_URL=https://catch-up-ai-tqf8.vercel.app
+  ```
+
+---
+
 ## 📄 License
 
 MIT — free to use and build upon.

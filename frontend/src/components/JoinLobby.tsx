@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Video, VideoOff, Mic, MicOff, ArrowRight, X, Users, Sparkles, Shield, User as UserIcon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { BACKEND_URL } from '../utils/storage';
 
 interface JoinLobbyProps {
   roomId: string;
@@ -30,7 +31,7 @@ export const JoinLobby: React.FC<JoinLobbyProps> = ({ roomId, onJoin, onCancel }
     let isMounted = true;
     async function checkRoom() {
       try {
-        const res = await fetch(`/api/rooms/${roomId}`);
+        const res = await fetch(`${BACKEND_URL}/api/rooms/${roomId}`);
         if (res.ok) {
           const data = await res.json();
           if (isMounted) setRoomInfo(data);
